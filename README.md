@@ -59,14 +59,6 @@ Demo演示视频地址：http://v.youku.com/v_show/id_XMTcxMTY1MzE0NA==.html?bet
 编写完后，运行/src/main/java/org/webdriver/patatiumappui/PageObjectConfig/PageObjectAutoCode.java 文件生成对象库java代码
 <h3>二、公共action封装实例（业务操作）</h3>
 ```
-package org.webdriver.patatiumappui.action;
-
-import org.webdriver.patatiumappui.pageObject.LoginPage;
-import org.webdriver.patatiumappui.utils.ElementAction;
-import org.webdriver.patatiumappui.utils.TestBaseCase;
-
-import java.io.IOException;
-
 /**
  * Created by zhengshuheng on 2016/9/2 0002.
  */
@@ -91,17 +83,6 @@ public class LoginAction extends TestBaseCase {
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/210055_8e091e1d_482055.png "在这里输入图片标题")
 <h3>四、测试用例编写</h3>
 ```
-import org.dom4j.DocumentException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.*;
-import org.webdriver.patatiumappui.action.LoginAction;
-import org.webdriver.patatiumappui.pageObject.LoginPage;
-import org.webdriver.patatiumappui.pageObject.StartPage;
-import org.webdriver.patatiumappui.utils.*;
-
-import java.io.IOException;
-
 /**
  * Created by zhengshuheng on 2016/9/2 0002.
  */
