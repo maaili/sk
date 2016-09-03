@@ -88,9 +88,4 @@ public class LoginAction extends TestBaseCase {
 ```
 <h3>驱动数据来源实例</h3>
 在src/main/resources/data下创建loginData.xls文件
-```
-用例名称	用户名	密码	预期提示信息
-输入错误的用户名和正确的密码	aaa	bbb	帐号或密码错误，请重新填写。
-输入正确的用户名和错误的密码	609958331	ddd	密码不正确
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/210055_8e091e1d_482055.png "在这里输入图片标题")
-```
