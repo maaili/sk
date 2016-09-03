@@ -155,4 +155,4 @@ tesng.xml需配置app主包名，主类名，SDK版本，Device Name等信息
 Device Name：在cmd命令下通过adb devices 获取
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/210836_afcc8ce0_482055.png "在这里输入图片标题")
 App 主包名，主类名等在Appium Server GUI 获取
-![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/211153_74c7c0c9_482055.png "在这里输入图片标题")
+![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/211315_02b35374_482055.png "在这里输入图片标题")
