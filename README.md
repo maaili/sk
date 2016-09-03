@@ -53,7 +53,7 @@ Demo演示视频地址：http://v.youku.com/v_show/id_XMTcxMTY1MzE0NA==.html?bet
 		<locator type="id" timeout="3" value="com.tencent.mm:id/b5t"  desc="登录">登录按钮</locator>
 		<locator type="id" timeout="3" value="com.tencent.mm:id/avt"  desc="失败提示信息确认按钮">登录失败提示信息</locator>
 		<locator type="id" timeout="3" value="com.tencent.mm:id/bim"  desc="失败提示信息确认按钮">登录失败确认按钮</locator>
-
     </page>
 </map>
 ```
+编写完后，运行/src/main/java/org/webdriver/patatiumappui/PageObjectConfig/PageObjectAutoCode.java 文件生成对象库java代码
