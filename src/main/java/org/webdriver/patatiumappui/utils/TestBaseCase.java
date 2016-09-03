@@ -31,7 +31,7 @@ public class TestBaseCase {
 	//方法描述
 	public static String description;
 	public Log log=new Log(this.getClass().getSuperclass());
-	@BeforeSuite
+	@BeforeTest
 	@Parameters({"driverName","nodeURL","appName","deviceName","sdkVersion","appMainPackage","appActivity","platformName"})
 	public void  setup( String driverName,String nodeURL,String appName,String deviceName,String sdkVersion,String appMainPackage,String appActivity,String platformName) throws MalformedURLException {
 		log.info("------------------开始执行测试---------------");
@@ -68,7 +68,7 @@ public class TestBaseCase {
 
 	}
 
-	@AfterSuite
+	@AfterTest
 	public void tearDown() throws IOException {
 		this.driver.quit();
 		ElementAction action=new ElementAction();

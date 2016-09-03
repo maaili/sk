@@ -3,12 +3,12 @@
 <suite name="Suite" >
     <parameter name="driverName" value="AndroidDriver" />   <!--driver驱动：安卓，IOS-->
     <parameter name="nodeURL" value="127.0.0.1:4723" /> <!--appium-server 地址-->
-    <parameter name="appName" value="hk515SeeDoctor.apk" />  <!--app包名字-->
+    <parameter name="appName" value="weixin_861.apk" />  <!--app包名字-->
     <parameter name="platformName" value="Android" /> <!--app运行平台:安卓，IOS-->
     <parameter name="deviceName" value="127.0.0.1:62001" /> <!--手机或者虚拟机设备名字-->
     <parameter name="sdkVersion" value="6.0" /><!--安卓,IOS SDK版本-->
-    <parameter name="appMainPackage" value="com.hk515.patient" /><!--app主包名-->
-    <parameter name="appActivity" value="com.hk515.patient.base.MainActivity" /> <!--app 主类名-->
+    <parameter name="appMainPackage" value="com.tencent.mm" /><!--app主包名-->
+    <parameter name="appActivity" value="com.tencent.mm.ui.LauncherUI" /> <!--app 主类名-->
     <parameter name="UserName" value="" /> <!-- 系统登录用户名-->
     <parameter name="PassWord" value="" />  <!-- 系统登录密码-->
     <parameter name="smtpUserName" value="" />  <!-- 测试报告邮件发送：smtp身份证验证-->
@@ -33,6 +33,14 @@
                 </methods>
             </class>
         </classes>
-
+    </test>
+    <test name="登录失败测试：数据驱动">
+        <classes>
+            <class name="LoginTest">
+                <methods>
+                    <include name="loginFail"/>
+                </methods>
+            </class>
+        </classes>
     </test>
 </suite> <!-- Suite -->

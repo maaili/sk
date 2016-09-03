@@ -153,7 +153,74 @@ public class ElementAction extends TestBaseCase{
 	{
 		touchAction.press(findElement(locator),x,y);
 	}
-	public  void 
+
+	/**
+	 * 取消操作
+	 */
+	public  void cancle()
+	{
+		touchAction.cancel();
+	}
+
+	/**
+	 * 移动到某个元素上
+	 * @param locator
+	 */
+	public void movetoElement(Locator locator)
+	{
+		touchAction.moveTo(findElement(locator));
+	}
+
+	/**
+	 * 从x,y目标移动到元素
+	 * @param locator
+	 * @param x
+	 * @param y
+	 */
+	public  void movetoElementPostion(Locator locator,int x,int y)
+	{
+		touchAction.moveTo(findElement(locator),x,y);
+	}
+
+	/**
+	 * 移动到某个位置
+	 * @param x
+	 * @param y
+	 */
+	public  void movetoPostion(int x,int y)
+	{
+		touchAction.moveTo(x,y);
+	}
+
+	/**
+	 * 从一个地方滑动到另外一个地方，等待几秒松开
+	 * @param x1
+	 * @param y1
+	 * @param x2
+	 * @param y2
+	 * @param wait 等待几秒松开
+	 */
+	public  void swipe(int x1,int y1,int x2,int y2,int wait)
+	{
+		driver.swipe(x1,y1,x2,y2,wait);
+	}
+
+	/**
+	 * 在控件中心点轻按下
+	 * @param locator
+	 */
+	public  void tap(Locator locator)
+	{
+		touchAction.tap(findElement(locator));
+	}
+	/**
+	 * 在控件某个点轻按下
+	 * @param locator
+	 */
+	public  void tap(Locator locator,int x,int y)
+	{
+		touchAction.tap(findElement(locator),x,y);
+	}
 	/**
 	 * 文本框输入操作
 	 * @param locator  元素locator
@@ -164,7 +231,8 @@ public class ElementAction extends TestBaseCase{
 		try {
 			WebElement webElement=findElement(locator);
 			webElement.sendKeys(value);
-			log.info("input输入："+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"value:"+value+"]");
+			//log.info("input输入："+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"  value:"+value+"]");
+			log.info("input输入："+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"  value:"+"*******"+"]");
 		} catch (NoSuchElementException e) {
 			// TODO: handle exception
 			log.error("找不到元素，input输入失败:"+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
@@ -366,16 +434,14 @@ public class ElementAction extends TestBaseCase{
 	 * 清除文本框内容
 	 * @param locator  元素locator
 	 */
-	public void clear(Locator locator)
-	{
+	public void clear(Locator locator){
 		try {
 			WebElement webElement=findElement(locator);
 			webElement.clear();
 			log.info("清除input值:"+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
-		} catch (Exception e) {
+		} catch (NoSuchElementException e) {
 			// TODO: handle exception
 			log.error("清除input值失败:"+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
-			throw e;
 
 		}
 
@@ -480,6 +546,7 @@ public class ElementAction extends TestBaseCase{
 	public void sleep(long time)
 	{
 		try {
+			log.info("等待"+time+"秒");
 			Thread.sleep(time*1000);
 		} catch (InterruptedException e) {
 			// TODO 自动生成的 catch 块

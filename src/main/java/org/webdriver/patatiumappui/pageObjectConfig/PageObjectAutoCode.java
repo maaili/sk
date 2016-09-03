@@ -78,7 +78,7 @@ public class PageObjectAutoCode {
 				{
 					sb.append("\n");
 				}
-				sb.append("public Locator "+locatorName+"() throws IOException\n {\n");
+				sb.append("public  Locator "+locatorName+"() throws IOException\n {\n");
 				//sb.append("   setXmlObjectPath(path);\n");
 				sb.append("   Locator locator=getLocator(\""+locatorName+"\");\n");
 				sb.append("   return locator;\n }\n");
