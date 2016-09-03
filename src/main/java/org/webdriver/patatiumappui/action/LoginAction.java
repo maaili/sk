@@ -1,8 +1,6 @@
 package org.webdriver.patatiumappui.action;
 
 import org.webdriver.patatiumappui.pageObject.LoginPage;
-import org.webdriver.patatiumappui.pageObject.StartPage;
-import org.webdriver.patatiumappui.utils.Assertion;
 import org.webdriver.patatiumappui.utils.ElementAction;
 import org.webdriver.patatiumappui.utils.TestBaseCase;
 
