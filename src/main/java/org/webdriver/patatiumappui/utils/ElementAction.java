@@ -1,9 +1,10 @@
 package org.webdriver.patatiumappui.utils;
 
 import com.google.common.io.Files;
+import io.appium.java_client.NetworkConnectionSetting;
+import io.appium.java_client.TouchAction;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.mobile.NetworkConnection;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -18,437 +19,141 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 页面元素操作类--操作页面元素的方法
- * @author Administrator 郑树恒
+ * app元素操作类方法
+ * @author zhengshuheng 郑树恒
  *
  */
 public class ElementAction extends TestBaseCase{
 
 	private Log log=new Log(this.getClass());
 	public static ArrayList<Exception> noSuchElementExceptions=new ArrayList<Exception>();
-	private String formatDate(Date date)
+	TouchAction touchAction=new TouchAction(driver);
+	/**
+	 * 获取手机网络状态
+	 */
+	public  void get_network_connection()
 	{
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HHmmssSSS");
-		return formatter.format(date).toString();
+		int state=driver.getNetworkConnection().value;
 	}
 	/**
-	 * 查找一组元素
+	 * 设置网络状态
+	 *
+	 */
+	public  void tsetNetworkConnection(int status)
+	{
+       driver.setNetworkConnection(new NetworkConnectionSetting(status));
+	}
+	/**
+	 * 安装app
+	 */
+	public  void installApp(String appPath)
+	{
+		driver.installApp(appPath);
+	}
+
+	/**
+	 * 判断是否已安装app
+	 * @param PackageName
+	 */
+	public  boolean  isInstallApp(String PackageName)
+	{
+		return  driver.isAppInstalled(PackageName);
+	}
+	/**
+	 * 判断是否锁屏
+	 */
+	public  boolean  isLockedscreen()
+	{
+        return  driver.isLocked();
+	}
+
+	/**
+	 * 打开通知栏界面
+	 */
+	public void openNotifications()
+	{
+		driver.openNotifications();
+	}
+	/**
+	 * 按下安卓手机键.例如home,back等
+	 * @param androidKeyCode 通过 AndroidKeyCode 枚举类获取
+	 */
+	public  void pressAndroidKey(int androidKeyCode )
+	{
+		driver.pressKeyCode(androidKeyCode);
+	}
+
+	/**
+	 * 长按下安卓手机键.例如home,back等
+	 * @param androidKeyCode 通过 AndroidKeyCode 枚举类获取
+	 */
+	public void longPressAndroidKey(int androidKeyCode)
+	{
+		driver.longPressKeyCode(androidKeyCode);
+	}
+	/**
+	 *长按某个元素
+	 * @param locator  元素locator
+	 */
+	public  void longPressAppElement(Locator locator)
+	{
+		touchAction.longPress(findElement(locator));
+
+	}
+
+	/**
+	 * 长按某个元素某个位置
 	 * @param locator 元素定位信息
-	 * @return
+	 * @param x 元素X坐标
+	 * @param y 元素Y坐标
 	 */
-	public List<WebElement>  findElements(final Locator locator)
+	public  void longPressAppElement(Locator locator,int x,int y)
 	{
-
-		/**
-		 * 查找某个元素等待几秒
-		 */
-		//Waitformax(Integer.valueOf(locator.getWaitSec()));
-		List<WebElement>  webElements=null;
-		try {
-			webElements=(new WebDriverWait(driver, 20)).until(
-					new ExpectedCondition<List<WebElement>>() {
-
-						@Override
-						public List<WebElement> apply(WebDriver driver) {
-							// TODO 自动生成的方法存根
-							List<WebElement> element=null;
-							element=getElements(locator);
-							return element;}
-					});
-			return webElements;
-		} catch (NoSuchElementException e) {
-			// TODO: handle exception
-			log.info("无法定位页面元素");
-			e.printStackTrace();
-			Assertion.assertInfolList.add("failed,找不到元素：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
-			noSuchElementExceptions.add(e);
-			Assertion.messageList.add("找不到所需页面元素["+locator.getElement()+"]:failed");
-			ScreenShot screenShot=new ScreenShot(driver);
-			//设置截图名字
-			Date nowDate=new Date();
-			screenShot.setscreenName(this.formatDate(nowDate));
-			screenShot.takeScreenshot();
-			Assertion.messageList.add("&lt;a class=\"clickbox\" href=\"#url\"&gt;\n"
-					+ "&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"100\" width=\"100\" alt=\"\" /&gt;\n"
-					+ "&lt;b class=\"lightbox\"&gt;\n"
-					+ "&lt;b class=\"light\"&gt;&lt;/b&gt;\n"
-					+ "&lt;b class=\"box\"&gt;\n"
-					+ "&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"530\" width=\"1024\" onmousewheel=\"return bigimg(this)\" alt=\"\" /&gt;\n"
-					+ "&lt;span&gt;滚动鼠标缩放大小,点击X关闭当前图片，返回报表界面.&lt;br /&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;\n"
-					+ "&lt;/b&gt;\n"
-					+ "&lt;/b&gt;\n"
-					+ "&lt;/a&gt;\n"
-					+ "&lt;br class=\"clear\" /&gt;\n"
-					+"&lt;a class=\"clickbox\" href=\"#url\"&gt;"
-					+ "点击查看大图"
-					+ "&lt;b class=\"lightbox\"&gt;"
-					+ "&lt;b class=\"light\"&gt;&lt;/b&gt;"
-					+ "&lt;b class=\"box\"&gt;&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"530\" width=\"1024\" onmousewheel=\"return bigimg(this)\" alt=\"\" /&gt;"
-					+ "&lt;span&gt;滚动鼠标缩放大小,点击X关闭当前图片，返回报表界面."
-					+ "&lt;br /&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;"
-					+ "&lt;/b&gt;"
-					+ "&lt;/b&gt;"
-					+ " &lt;/a&gt;\n&lt;/br&gt;"
-					+ "&lt;div id=\"close\"&gt;&lt;/div&gt;\n");
-			log.info(this.formatDate(nowDate));
-			//Assertion.assertInfolList.add(arg0)
-			return webElements;
-		}
-		catch (TimeoutException e) {
-			// TODO: handle exception
-			log.info("查找页面元素超时");
-			e.printStackTrace();
-			Assertion.assertInfolList.add("failed,超时找不到元素：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
-			noSuchElementExceptions.add(e);
-			Assertion.messageList.add("超时找不到所需页面元素["+locator.getElement()+"]:failed");
-			ScreenShot screenShot=new ScreenShot(driver);
-			//设置截图名字
-			Date nowDate=new Date();
-			screenShot.setscreenName(this.formatDate(nowDate));
-			screenShot.takeScreenshot();
-			//Assertion.assertInfolList.add("&lt;a href=\"snapshot/"+this.formatDate(nowDate)+".jpg\" &gt;&lt;img height=\"100\" width=\"100\" src=\"snapshot/"+this.formatDate(nowDate)+".jpg\"&gt;&lt;/img&gt;&lt;/a>&lt;br/&gt;"+"&lt;a href=\"snapshot/"+this.formatDate(nowDate)+".jpg\" &gt;点击查看大图&lt;/a&gt;\n");
-			Assertion.messageList.add("&lt;a class=\"clickbox\" href=\"#url\"&gt;\n"
-					+ "&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"100\" width=\"100\" alt=\"\" /&gt;\n"
-					+ "&lt;b class=\"lightbox\"&gt;\n"
-					+ "&lt;b class=\"light\"&gt;&lt;/b&gt;\n"
-					+ "&lt;b class=\"box\"&gt;\n"
-					+ "&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"530\" width=\"1024\" onmousewheel=\"return bigimg(this)\" alt=\"\" /&gt;\n"
-					+ "&lt;span&gt;滚动鼠标缩放大小,点击X关闭当前图片，返回报表界面.&lt;br /&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;\n"
-					+ "&lt;/b&gt;\n"
-					+ "&lt;/b&gt;\n"
-					+ "&lt;/a&gt;\n"
-					+ "&lt;br class=\"clear\" /&gt;\n"
-					+"&lt;a class=\"clickbox\" href=\"#url\"&gt;"
-					+ "点击查看大图"
-					+ "&lt;b class=\"lightbox\"&gt;"
-					+ "&lt;b class=\"light\"&gt;&lt;/b&gt;"
-					+ "&lt;b class=\"box\"&gt;&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"530\" width=\"1024\" onmousewheel=\"return bigimg(this)\" alt=\"\" /&gt;"
-					+ "&lt;span&gt;滚动鼠标缩放大小,点击X关闭当前图片，返回报表界面."
-					+ "&lt;br /&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;"
-					+ "&lt;/b&gt;"
-					+ "&lt;/b&gt;"
-					+ " &lt;/a&gt;\n&lt;/br&gt;"
-					+ "&lt;div id=\"close\"&gt;&lt;/div&gt;\n");
-			log.info(this.formatDate(nowDate));
-			//Assertion.assertInfolList.add(arg0)
-			return webElements;
-		}
-		catch (ElementNotVisibleException e) {
-			// TODO: handle exception
-			log.info("查找页面元素超时");
-			e.printStackTrace();
-			Assertion.assertInfolList.add("failed,页面元素不可视：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
-			noSuchElementExceptions.add(e);
-			Assertion.messageList.add("超时页面元素不可视["+locator.getElement()+"]:failed");
-			ScreenShot screenShot=new ScreenShot(driver);
-			//设置截图名字
-			Date nowDate=new Date();
-			screenShot.setscreenName(this.formatDate(nowDate));
-			screenShot.takeScreenshot();
-			//Assertion.assertInfolList.add("&lt;a href=\"snapshot/"+this.formatDate(nowDate)+".jpg\" &gt;&lt;img height=\"100\" width=\"100\" src=\"snapshot/"+this.formatDate(nowDate)+".jpg\"&gt;&lt;/img&gt;&lt;/a>&lt;br/&gt;"+"&lt;a href=\"snapshot/"+this.formatDate(nowDate)+".jpg\" &gt;点击查看大图&lt;/a&gt;\n");
-			Assertion.messageList.add("&lt;a class=\"clickbox\" href=\"#url\"&gt;\n"
-					+ "&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"100\" width=\"100\" alt=\"\" /&gt;\n"
-					+ "&lt;b class=\"lightbox\"&gt;\n"
-					+ "&lt;b class=\"light\"&gt;&lt;/b&gt;\n"
-					+ "&lt;b class=\"box\"&gt;\n"
-					+ "&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"530\" width=\"1024\" onmousewheel=\"return bigimg(this)\" alt=\"\" /&gt;\n"
-					+ "&lt;span&gt;滚动鼠标缩放大小,点击X关闭当前图片，返回报表界面.&lt;br /&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;\n"
-					+ "&lt;/b&gt;\n"
-					+ "&lt;/b&gt;\n"
-					+ "&lt;/a&gt;\n"
-					+ "&lt;br class=\"clear\" /&gt;\n"
-					+"&lt;a class=\"clickbox\" href=\"#url\"&gt;"
-					+ "点击查看大图"
-					+ "&lt;b class=\"lightbox\"&gt;"
-					+ "&lt;b class=\"light\"&gt;&lt;/b&gt;"
-					+ "&lt;b class=\"box\"&gt;&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"530\" width=\"1024\" onmousewheel=\"return bigimg(this)\" alt=\"\" /&gt;"
-					+ "&lt;span&gt;滚动鼠标缩放大小,点击X关闭当前图片，返回报表界面."
-					+ "&lt;br /&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;"
-					+ "&lt;/b&gt;"
-					+ "&lt;/b&gt;"
-					+ " &lt;/a&gt;\n&lt;/br&gt;"
-					+ "&lt;div id=\"close\"&gt;&lt;/div&gt;\n");
-			log.info(this.formatDate(nowDate));
-			//Assertion.assertInfolList.add(arg0)
-			return webElements;
-		}
-
-	}
-	public WebElement findElement( final Locator locator)
-	{
-		/**
-		 * 查找某个元素等待几秒
-		 */
-		//Waitformax(Integer.valueOf(locator.getWaitSec()));
-		WebElement webElement=null;
-		try {
-			webElement=(new WebDriverWait(driver, 20)).until(
-					new ExpectedCondition<WebElement>() {
-
-						@Override
-						public WebElement apply(WebDriver driver) {
-							// TODO 自动生成的方法存根
-							WebElement element=null;
-							element=getElement(locator);
-							return element;
-						}
-					});
-			return webElement;
-		} catch (NoSuchElementException e) {
-			// TODO: handle exception
-			log.info("无法定位页面元素");
-			e.printStackTrace();
-			Assertion.assertInfolList.add("failed,找不到元素：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
-			noSuchElementExceptions.add(e);
-			Assertion.messageList.add("找不到所需页面元素["+locator.getElement()+"]:failed");
-			ScreenShot screenShot=new ScreenShot(driver);
-			//设置截图名字
-			Date nowDate=new Date();
-			screenShot.setscreenName(this.formatDate(nowDate));
-			screenShot.takeScreenshot();
-			Assertion.messageList.add("&lt;a class=\"clickbox\" href=\"#url\"&gt;\n"
-					+ "&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"100\" width=\"100\" alt=\"\" /&gt;\n"
-					+ "&lt;b class=\"lightbox\"&gt;\n"
-					+ "&lt;b class=\"light\"&gt;&lt;/b&gt;\n"
-					+ "&lt;b class=\"box\"&gt;\n"
-					+ "&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"530\" width=\"1024\" onmousewheel=\"return bigimg(this)\" alt=\"\" /&gt;\n"
-					+ "&lt;span&gt;滚动鼠标缩放大小,点击X关闭当前图片，返回报表界面.&lt;br /&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;\n"
-					+ "&lt;/b&gt;\n"
-					+ "&lt;/b&gt;\n"
-					+ "&lt;/a&gt;\n"
-					+ "&lt;br class=\"clear\" /&gt;\n"
-					+"&lt;a class=\"clickbox\" href=\"#url\"&gt;"
-					+ "点击查看大图"
-					+ "&lt;b class=\"lightbox\"&gt;"
-					+ "&lt;b class=\"light\"&gt;&lt;/b&gt;"
-					+ "&lt;b class=\"box\"&gt;&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"530\" width=\"1024\" onmousewheel=\"return bigimg(this)\" alt=\"\" /&gt;"
-					+ "&lt;span&gt;滚动鼠标缩放大小,点击X关闭当前图片，返回报表界面."
-					+ "&lt;br /&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;"
-					+ "&lt;/b&gt;"
-					+ "&lt;/b&gt;"
-					+ " &lt;/a&gt;\n&lt;/br&gt;"
-					+ "&lt;div id=\"close\"&gt;&lt;/div&gt;\n");
-			log.info(this.formatDate(nowDate));
-			return webElement;
-		}
-		catch (TimeoutException e) {
-			// TODO: handle exception
-			log.info("超时无法定位页面元素");
-			e.printStackTrace();
-			Assertion.assertInfolList.add("failed,超时找不到元素：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
-			noSuchElementExceptions.add(e);
-			Assertion.messageList.add("超时找不到所需页面元素["+locator.getElement()+"]:failed");
-			ScreenShot screenShot=new ScreenShot(driver);
-			//设置截图名字
-			Date nowDate=new Date();
-			screenShot.setscreenName(this.formatDate(nowDate));
-			screenShot.takeScreenshot();
-			Assertion.messageList.add("&lt;a class=\"clickbox\" href=\"#url\"&gt;\n"
-					+ "&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"100\" width=\"100\" alt=\"\" /&gt;\n"
-					+ "&lt;b class=\"lightbox\"&gt;\n"
-					+ "&lt;b class=\"light\"&gt;&lt;/b&gt;\n"
-					+ "&lt;b class=\"box\"&gt;\n"
-					+ "&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"530\" width=\"1024\" onmousewheel=\"return bigimg(this)\" alt=\"\" /&gt;\n"
-					+ "&lt;span&gt;滚动鼠标缩放大小,点击X关闭当前图片，返回报表界面.&lt;br /&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;\n"
-					+ "&lt;/b&gt;\n"
-					+ "&lt;/b&gt;\n"
-					+ "&lt;/a&gt;\n"
-					+ "&lt;br class=\"clear\" /&gt;\n"
-					+"&lt;a class=\"clickbox\" href=\"#url\"&gt;"
-					+ "点击查看大图"
-					+ "&lt;b class=\"lightbox\"&gt;"
-					+ "&lt;b class=\"light\"&gt;&lt;/b&gt;"
-					+ "&lt;b class=\"box\"&gt;&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"530\" width=\"1024\" onmousewheel=\"return bigimg(this)\" alt=\"\" /&gt;"
-					+ "&lt;span&gt;滚动鼠标缩放大小,点击X关闭当前图片，返回报表界面."
-					+ "&lt;br /&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;"
-					+ "&lt;/b&gt;"
-					+ "&lt;/b&gt;"
-					+ " &lt;/a&gt;\n&lt;/br&gt;"
-					+ "&lt;div id=\"close\"&gt;&lt;/div&gt;\n");
-			log.info(this.formatDate(nowDate));
-			return webElement;
-		}
-		catch (ElementNotVisibleException e) {
-			// TODO: handle exception
-			log.info("超时无法定位页面元素");
-			e.printStackTrace();
-			Assertion.assertInfolList.add("failed,超时找不到元素：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
-			noSuchElementExceptions.add(e);
-			Assertion.messageList.add("超时页面元素不可视["+locator.getElement()+"]:failed");
-			ScreenShot screenShot=new ScreenShot(driver);
-			//设置截图名字
-			Date nowDate=new Date();
-			screenShot.setscreenName(this.formatDate(nowDate));
-			screenShot.takeScreenshot();
-			Assertion.messageList.add("&lt;a class=\"clickbox\" href=\"#url\"&gt;\n"
-					+ "&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"100\" width=\"100\" alt=\"\" /&gt;\n"
-					+ "&lt;b class=\"lightbox\"&gt;\n"
-					+ "&lt;b class=\"light\"&gt;&lt;/b&gt;\n"
-					+ "&lt;b class=\"box\"&gt;\n"
-					+ "&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"530\" width=\"1024\" onmousewheel=\"return bigimg(this)\" alt=\"\" /&gt;\n"
-					+ "&lt;span&gt;滚动鼠标缩放大小,点击X关闭当前图片，返回报表界面.&lt;br /&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;\n"
-					+ "&lt;/b&gt;\n"
-					+ "&lt;/b&gt;\n"
-					+ "&lt;/a&gt;\n"
-					+ "&lt;br class=\"clear\" /&gt;\n"
-					+"&lt;a class=\"clickbox\" href=\"#url\"&gt;"
-					+ "点击查看大图"
-					+ "&lt;b class=\"lightbox\"&gt;"
-					+ "&lt;b class=\"light\"&gt;&lt;/b&gt;"
-					+ "&lt;b class=\"box\"&gt;&lt;img src=\"snapshot/"
-					+ this.formatDate(nowDate)
-					+ ".jpg\" height=\"530\" width=\"1024\" onmousewheel=\"return bigimg(this)\" alt=\"\" /&gt;"
-					+ "&lt;span&gt;滚动鼠标缩放大小,点击X关闭当前图片，返回报表界面."
-					+ "&lt;br /&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;"
-					+ "&lt;/b&gt;"
-					+ "&lt;/b&gt;"
-					+ " &lt;/a&gt;\n&lt;/br&gt;"
-					+ "&lt;div id=\"close\"&gt;&lt;/div&gt;\n");
-			log.info(this.formatDate(nowDate));
-			return webElement;
-		}
+		touchAction.longPress(findElement(locator),x,y);
 	}
 
 	/**
-	 * 通过定位信息获取元素
-	 * @param locator  元素locator
-	 * @return 返回WebElement
-	 * @throws NoSuchElementException 找不到元素异常
+	 * 长按手机界面某个位置
+	 * @param x
+	 * @param y
 	 */
-	public WebElement getElement(Locator locator)
+	public  void longPressPosition(int x,int y)
 	{
+		touchAction.longPress(x,y);
 
-		/**
-		 * locator.getElement(),获取对象库对象定位信息
-		 */
-		log.info("查找元素："+locator.getLocalorName()+"方式"+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
-		WebElement webElement;
-		switch (locator.getBy())
-		{
-			case xpath :
-				webElement=driver.findElement(By.xpath(locator.getElement()));
-				break;
-			case id:
-				webElement=driver.findElement(By.id(locator.getElement()));
-				break;
-			case cssSelector:
-				webElement=driver.findElement(By.cssSelector(locator.getElement()));
-				break;
-			case name:
-				webElement=driver.findElement(By.name(locator.getElement()));
-				break;
-			case className:
-				webElement=driver.findElement(By.className(locator.getElement()));
-				break;
-			case linkText:
-				webElement=driver.findElement(By.linkText(locator.getElement()));
-				break;
-			case partialLinkText:
-				webElement=driver.findElement(By.partialLinkText(locator.getElement()));
-				break;
-			case tagName:
-				webElement=driver.findElement(By.tagName(locator.getElement()));
-				break;
-			default :
-				webElement=driver.findElement(By.xpath(locator.getElement()));
-				break;
-
-		}
-		return webElement;
 	}
+
 	/**
-	 * 通过定位信息获取一组元素
-	 * @param locator  元素locator
-	 * @return 返回WebElement
-	 * @throws NoSuchElementException 找不到元素异常
+	 * 按住手机界面某个位置
+	 * @param x
+	 * @param y
 	 */
-	public List<WebElement> getElements(Locator locator)
+	public  void pressPosition(int x,int y)
 	{
-		/**
-		 * locator.getElement(),获取对象库对象定位信息
-		 */
-		//locator=getLocator(locatorMap.get(key));
-		log.info("查找一组元素："+locator.getLocalorName()+" 方式"+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
-		List<WebElement> webElements;
-		switch (locator.getBy())
-		{
-			case xpath :
-				//log.info("find element By xpath");
-				webElements=driver.findElements(By.xpath(locator.getElement()));
-				/**
-				 * 出现找不到元素的时候，记录日志文件
-				 */
-				break;
-			case id:
-				//log.info("find element By xpath");
-				webElements=driver.findElements(By.id(locator.getElement()));
-				break;
-			case cssSelector:
-				//log.info("find element By cssSelector");
-				webElements=driver.findElements(By.cssSelector(locator.getElement()));
-				break;
-			case name:
-				//log.info("find element By name");
-				webElements=driver.findElements(By.name(locator.getElement()));
-				break;
-			case className:
-				//log.info("find element By className");
-				webElements=driver.findElements(By.className(locator.getElement()));
-				break;
-			case linkText:
-				//log.info("find element By linkText");
-				webElements=driver.findElements(By.linkText(locator.getElement()));
-				break;
-			case partialLinkText:
-				//log.info("find element By partialLinkText");
-				webElements=driver.findElements(By.partialLinkText(locator.getElement()));
-				break;
-			case tagName:
-				//log.info("find element By tagName");
-				webElements=driver.findElements(By.partialLinkText(locator.getElement()));
-				break;
-			default :
-				//log.info("find element By xpath");
-				webElements=driver.findElements(By.xpath(locator.getElement()));
-				break;
+		touchAction.press(x,y);
 
-		}
-		return webElements;
 	}
+
+	/**
+	 * 按住某个元素
+	 * @param locator  元素定位信息
+	 */
+	public  void pressAppElement(Locator locator)
+	{
+		touchAction.press(findElement(locator));
+	}
+
+	/**
+	 * 按住某个元素的某个位置
+	 * @param locator 元素定位信息
+	 * @param x 位置x坐标
+	 * @param y 位置y坐标
+	 */
+    public  void  pressAppElement(Locator locator,int x,int y)
+	{
+		touchAction.press(findElement(locator),x,y);
+	}
+	public  void 
 	/**
 	 * 文本框输入操作
 	 * @param locator  元素locator
@@ -578,7 +283,6 @@ public class ElementAction extends TestBaseCase{
 	/**
 	 * 获取下拉列表的value属性值
 	 * @param selectLocator 下拉列表 select标签定位信息
-	 * @param optinValue 下拉列表文本值
 	 * @return 返回String
 	 */
 	public String  getSelectOptionValue(Locator selectLocator,String optinText)
@@ -704,7 +408,6 @@ public class ElementAction extends TestBaseCase{
 	}
 	/**
 	 * 隐式等待
-	 * @param  driver 浏览器driver
 	 * @param  t  最大等待时间，秒为单位
 	 **/
 	public void Waitformax(int t)
@@ -853,9 +556,292 @@ public class ElementAction extends TestBaseCase{
 		webDriverWait.until(ExpectedConditions.visibilityOf(action.findElement(locator))).isDisplayed();
 
 	}
-	public  void get_network_connection()
+	/**
+	 * 查找一组元素
+	 * @param locator 元素定位信息
+	 * @return
+	 */
+	public List<WebElement>  findElements(final Locator locator)
 	{
-		int state=driver.getNetworkConnection().value;
+
+		/**
+		 * 查找某个元素等待几秒
+		 */
+		//Waitformax(Integer.valueOf(locator.getWaitSec()));
+		List<WebElement>  webElements=null;
+		try {
+			webElements=(new WebDriverWait(driver, 20)).until(
+					new ExpectedCondition<List<WebElement>>() {
+
+						@Override
+						public List<WebElement> apply(WebDriver driver) {
+							// TODO 自动生成的方法存根
+							List<WebElement> element=null;
+							element=getElements(locator);
+							return element;}
+					});
+			return webElements;
+		} catch (NoSuchElementException e) {
+			// TODO: handle exception
+			log.info("无法定位页面元素");
+			e.printStackTrace();
+			Assertion.assertInfolList.add("failed,找不到元素：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
+			noSuchElementExceptions.add(e);
+			Assertion.messageList.add("找不到所需页面元素["+locator.getElement()+"]:failed");
+			ScreenShot screenShot=new ScreenShot(driver);
+			//设置截图名字
+			Date nowDate=new Date();
+			screenShot.setscreenName(this.formatDate(nowDate));
+			screenShot.takeScreenshot();
+			//报表展示截图
+			this.showscreenShot(nowDate);
+			log.info(this.formatDate(nowDate));
+			return webElements;
+		}
+		catch (TimeoutException e) {
+			// TODO: handle exception
+			log.info("查找页面元素超时");
+			e.printStackTrace();
+			Assertion.assertInfolList.add("failed,超时找不到元素：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
+			noSuchElementExceptions.add(e);
+			Assertion.messageList.add("超时找不到所需页面元素["+locator.getElement()+"]:failed");
+			ScreenShot screenShot=new ScreenShot(driver);
+			//设置截图名字
+			Date nowDate=new Date();
+			screenShot.setscreenName(this.formatDate(nowDate));
+			screenShot.takeScreenshot();
+			//报表展示截图
+			this.showscreenShot(nowDate);
+			log.info(this.formatDate(nowDate));
+			//Assertion.assertInfolList.add(arg0)
+			return webElements;
+		}
+		catch (ElementNotVisibleException e) {
+			// TODO: handle exception
+			log.info("查找页面元素超时");
+			e.printStackTrace();
+			Assertion.assertInfolList.add("failed,页面元素不可视：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
+			noSuchElementExceptions.add(e);
+			Assertion.messageList.add("超时页面元素不可视["+locator.getElement()+"]:failed");
+			ScreenShot screenShot=new ScreenShot(driver);
+			//设置截图名字
+			Date nowDate=new Date();
+			screenShot.setscreenName(this.formatDate(nowDate));
+			screenShot.takeScreenshot();
+			//展示报表截图
+			this.showscreenShot(nowDate);
+			log.info(this.formatDate(nowDate));
+			//Assertion.assertInfolList.add(arg0)
+			return webElements;
+		}
+
+	}
+	public WebElement findElement( final Locator locator)
+	{
+		/**
+		 * 查找某个元素等待几秒
+		 */
+		//Waitformax(Integer.valueOf(locator.getWaitSec()));
+		WebElement webElement=null;
+		try {
+			webElement=(new WebDriverWait(driver, 20)).until(
+					new ExpectedCondition<WebElement>() {
+
+						@Override
+						public WebElement apply(WebDriver driver) {
+							// TODO 自动生成的方法存根
+							WebElement element=null;
+							element=getElement(locator);
+							return element;
+						}
+					});
+			return webElement;
+		} catch (NoSuchElementException e) {
+			// TODO: handle exception
+			log.info("无法定位页面元素");
+			e.printStackTrace();
+			Assertion.assertInfolList.add("failed,找不到元素：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
+			noSuchElementExceptions.add(e);
+			Assertion.messageList.add("找不到所需页面元素["+locator.getElement()+"]:failed");
+			ScreenShot screenShot=new ScreenShot(driver);
+			//设置截图名字
+			Date nowDate=new Date();
+			screenShot.setscreenName(this.formatDate(nowDate));
+			screenShot.takeScreenshot();
+			//展示报表截图
+			this.showscreenShot(nowDate);
+			log.info(this.formatDate(nowDate));
+			return webElement;
+		}
+		catch (TimeoutException e) {
+			// TODO: handle exception
+			log.info("超时无法定位页面元素");
+			e.printStackTrace();
+			Assertion.assertInfolList.add("failed,超时找不到元素：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
+			noSuchElementExceptions.add(e);
+			Assertion.messageList.add("超时找不到所需页面元素["+locator.getElement()+"]:failed");
+			ScreenShot screenShot=new ScreenShot(driver);
+			//设置截图名字
+			Date nowDate=new Date();
+			screenShot.setscreenName(this.formatDate(nowDate));
+			screenShot.takeScreenshot();
+			//展示报表截图
+			this.showscreenShot(nowDate);
+			log.info(this.formatDate(nowDate));
+			return webElement;
+		}
+		catch (ElementNotVisibleException e) {
+			// TODO: handle exception
+			log.info("超时无法定位页面元素");
+			e.printStackTrace();
+			Assertion.assertInfolList.add("failed,超时找不到元素：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
+			noSuchElementExceptions.add(e);
+			Assertion.messageList.add("超时页面元素不可视["+locator.getElement()+"]:failed");
+			ScreenShot screenShot=new ScreenShot(driver);
+			//设置截图名字
+			Date nowDate=new Date();
+			screenShot.setscreenName(this.formatDate(nowDate));
+			screenShot.takeScreenshot();
+			//展示报表截图
+			this.showscreenShot(nowDate);
+			log.info(this.formatDate(nowDate));
+			return webElement;
+		}
+	}
+
+	/**
+	 * 通过定位信息获取元素
+	 * @param locator  元素locator
+	 * @return 返回WebElement
+	 * @throws NoSuchElementException 找不到元素异常
+	 */
+	public WebElement getElement(Locator locator)
+	{
+
+		/**
+		 * locator.getElement(),获取对象库对象定位信息
+		 */
+		log.info("查找元素："+locator.getLocalorName()+"方式"+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
+		WebElement webElement;
+		switch (locator.getBy())
+		{
+			case xpath :
+				webElement=driver.findElement(By.xpath(locator.getElement()));
+				break;
+			case id:
+				webElement=driver.findElement(By.id(locator.getElement()));
+				break;
+			case cssSelector:
+				webElement=driver.findElement(By.cssSelector(locator.getElement()));
+				break;
+			case name:
+				webElement=driver.findElement(By.name(locator.getElement()));
+				break;
+			case className:
+				webElement=driver.findElement(By.className(locator.getElement()));
+				break;
+			case linkText:
+				webElement=driver.findElement(By.linkText(locator.getElement()));
+				break;
+			case partialLinkText:
+				webElement=driver.findElement(By.partialLinkText(locator.getElement()));
+				break;
+			case tagName:
+				webElement=driver.findElement(By.tagName(locator.getElement()));
+				break;
+			default :
+				webElement=driver.findElement(By.xpath(locator.getElement()));
+				break;
+
+		}
+		return webElement;
+	}
+	/**
+	 * 通过定位信息获取一组元素
+	 * @param locator  元素locator
+	 * @return 返回WebElement
+	 * @throws NoSuchElementException 找不到元素异常
+	 */
+	public List<WebElement> getElements(Locator locator)
+	{
+		/**
+		 * locator.getElement(),获取对象库对象定位信息
+		 */
+		//locator=getLocator(locatorMap.get(key));
+		log.info("查找一组元素："+locator.getLocalorName()+" 方式"+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
+		List<WebElement> webElements;
+		switch (locator.getBy())
+		{
+			case xpath :
+				webElements=driver.findElements(By.xpath(locator.getElement()));
+				/**
+				 * 出现找不到元素的时候，记录日志文件
+				 */
+				break;
+			case id:
+				webElements=driver.findElements(By.id(locator.getElement()));
+				break;
+			case cssSelector:
+				webElements=driver.findElements(By.cssSelector(locator.getElement()));
+				break;
+			case name:
+				webElements=driver.findElements(By.name(locator.getElement()));
+				break;
+			case className:
+				webElements=driver.findElements(By.className(locator.getElement()));
+				break;
+			case linkText:
+				webElements=driver.findElements(By.linkText(locator.getElement()));
+				break;
+			case partialLinkText:
+				webElements=driver.findElements(By.partialLinkText(locator.getElement()));
+				break;
+			case tagName:
+				webElements=driver.findElements(By.partialLinkText(locator.getElement()));
+				break;
+			default :
+				webElements=driver.findElements(By.xpath(locator.getElement()));
+				break;
+
+		}
+		return webElements;
+	}
+	private String formatDate(Date date)
+	{
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HHmmssSSS");
+		return formatter.format(date).toString();
+	}
+	//报表展示截图
+	private  void  showscreenShot(Date nowDate)
+	{
+		Assertion.messageList.add("&lt;a class=\"clickbox\" href=\"#url\"&gt;\n"
+				+ "&lt;img src=\"snapshot/"
+				+ this.formatDate(nowDate)
+				+ ".jpg\" height=\"100\" width=\"100\" alt=\"\" /&gt;\n"
+				+ "&lt;b class=\"lightbox\"&gt;\n"
+				+ "&lt;b class=\"light\"&gt;&lt;/b&gt;\n"
+				+ "&lt;b class=\"box\"&gt;\n"
+				+ "&lt;img src=\"snapshot/"
+				+ this.formatDate(nowDate)
+				+ ".jpg\" height=\"530\" width=\"1024\" onmousewheel=\"return bigimg(this)\" alt=\"\" /&gt;\n"
+				+ "&lt;span&gt;滚动鼠标缩放大小,点击X关闭当前图片，返回报表界面.&lt;br /&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;\n"
+				+ "&lt;/b&gt;\n"
+				+ "&lt;/b&gt;\n"
+				+ "&lt;/a&gt;\n"
+				+ "&lt;br class=\"clear\" /&gt;\n"
+				+"&lt;a class=\"clickbox\" href=\"#url\"&gt;"
+				+ "点击查看大图"
+				+ "&lt;b class=\"lightbox\"&gt;"
+				+ "&lt;b class=\"light\"&gt;&lt;/b&gt;"
+				+ "&lt;b class=\"box\"&gt;&lt;img src=\"snapshot/"
+				+ this.formatDate(nowDate)
+				+ ".jpg\" height=\"530\" width=\"1024\" onmousewheel=\"return bigimg(this)\" alt=\"\" /&gt;"
+				+ "&lt;span&gt;滚动鼠标缩放大小,点击X关闭当前图片，返回报表界面."
+				+ "&lt;br /&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;"
+				+ "&lt;/b&gt;"
+				+ "&lt;/b&gt;"
+				+ " &lt;/a&gt;\n&lt;/br&gt;"
+				+ "&lt;div id=\"close\"&gt;&lt;/div&gt;\n");
 	}
 
 }
