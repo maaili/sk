@@ -21,3 +21,5 @@
 3、Android SDK
 4、一台安卓手机或者安卓模拟器，推荐夜神安卓模拟器，下载地址：http://www.yeshen.com/
 5、Appium Server端，下载地址：http://pan.baidu.com/s/1jIxzSfO
+<h1>Demo演示</h1>
+Demo演示视频地址：http://v.youku.com/v_show/id_XMTcxMTY1MzE0NA==.html?beta&
