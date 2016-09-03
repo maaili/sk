@@ -20,4 +20,4 @@
 2、IDEA\Eclipse
 3、Android SDK
 4、一台安卓手机或者安卓模拟器，推荐夜神安卓模拟器，下载地址：http://www.yeshen.com/
-5、Appium Server 
+5、Appium Server端，下载地址：http://pan.baidu.com/s/1jIxzSfO
