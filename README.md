@@ -197,3 +197,5 @@ Jenkins：1、checkout 项目代码 2、指定pom.xml文件 3、执行mvn clean 
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/212710_e5185410_482055.png "在这里输入图片标题")
 测试日志展示如下：
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/212830_2ff8aa61_482055.png "在这里输入图片标题")
+测试邮件展示如下：
+![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/213029_66ca45e5_482055.png "在这里输入图片标题")
