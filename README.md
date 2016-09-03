@@ -18,9 +18,10 @@
 <h1>环境配置</h1>
 1、JDK1.8
 2、IDEA\Eclipse
-3、Android SDK
+3、Android SDK 具体安装参考：http://www.webdriver.org/article-52-1.html
 4、一台安卓手机或者安卓模拟器，推荐夜神安卓模拟器，下载地址：http://www.yeshen.com/
 5、Appium Server端，下载地址：http://pan.baidu.com/s/1jIxzSfO
 <h1>Demo演示</h1>
 Demo演示视频地址：http://v.youku.com/v_show/id_XMTcxMTY1MzE0NA==.html?beta&
-<h3>创建对象库</h3>
+<h3>一、创建对象库</h3>
+1、通过Android SDK工具 uiautomatorviewer.bat 获取app元素定位信息，具体使用参考：http://www.webdriver.org/article-53-1.html
