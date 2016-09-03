@@ -57,7 +57,7 @@ Demo演示视频地址：http://v.youku.com/v_show/id_XMTcxMTY1MzE0NA==.html?bet
 </map>
 ```
 编写完后，运行/src/main/java/org/webdriver/patatiumappui/PageObjectConfig/PageObjectAutoCode.java 文件生成对象库java代码
-2、公共action封装实例（业务操作）
+<h3>二、公共action封装实例（业务操作）</h3>
 ```
 package org.webdriver.patatiumappui.action;
 
