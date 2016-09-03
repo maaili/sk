@@ -147,13 +147,6 @@ public class LoginTest extends TestBaseCase {
         //设置断言
         Assertion.VerityError();
     }
-    //数据驱动案例--end
-    @AfterSuite
-    public  void openResult()
-    {
-        WebDriver driver =new FirefoxDriver();
-        driver.get("http://127.0.0.1");
-    }
 }
 
 ```
