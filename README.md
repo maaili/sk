@@ -195,3 +195,5 @@ Jenkins：1、checkout 项目代码 2、指定pom.xml文件 3、执行mvn clean 
 测试报告文件生成在项目根目录下test-out目录下report.html文件
 报告展示如下：
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/212710_e5185410_482055.png "在这里输入图片标题")
+测试日志展示如下：
+![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/212830_2ff8aa61_482055.png "在这里输入图片标题")
