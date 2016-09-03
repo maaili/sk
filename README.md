@@ -205,11 +205,11 @@ App安装包apk文件放在项目根目录下apps目录里，tesng.xml需指定�
     </test>
 </suite> <!-- Suite -->
 ```
-<h3>六、执行用例<h3>
+<h3>六、执行用例</h3>
 IDE：在IDE集成开发环境下右键testng.xml使用testng运行
 Maven:执行mvn clean ;mvn test 命令
 Jenkins：1、checkout 项目代码 2、指定pom.xml文件 3、执行mvn clean ;mvn test 命令
-<h3>七、查看测试报告及日志文件<h3>
+<h3>七、查看测试报告及日志文件</h3>
 用例执行完毕，会自动发送邮件报告及生成测试报告文件；用例失败会自动截图并将其展示在报告中，也可以将用例失败堆栈信息显示到报表中
 测试报告文件生成在项目根目录下test-out目录下report.html文件
 报告展示如下：
