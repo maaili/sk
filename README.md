@@ -193,7 +193,7 @@ Jenkins：1、checkout 项目代码 2、指定pom.xml文件 3、执行mvn clean 
 <h3>七、查看测试报告及日志文件</h3>
 用例执行完毕，会自动发送邮件报告及生成测试报告文件；用例失败会自动截图并将其展示在报告中，也可以将用例失败堆栈信息显示到报表中
 测试报告文件生成在项目根目录下test-out目录下report.html文件
-报告展示如下：
+报告展示如下：http://www.webdriver.org/doc/patatiumappui/report/report.html
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/212710_e5185410_482055.png "在这里输入图片标题")
 测试日志展示如下：
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/212830_2ff8aa61_482055.png "在这里输入图片标题")
