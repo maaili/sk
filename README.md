@@ -23,3 +23,4 @@
 5、Appium Server端，下载地址：http://pan.baidu.com/s/1jIxzSfO
 <h1>Demo演示</h1>
 Demo演示视频地址：http://v.youku.com/v_show/id_XMTcxMTY1MzE0NA==.html?beta&
+<h2>创建对象库</h2>
