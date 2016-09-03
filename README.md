@@ -199,6 +199,8 @@ Jenkins：1、checkout 项目代码 2、指定pom.xml文件 3、执行mvn clean 
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/212830_2ff8aa61_482055.png "在这里输入图片标题")
 测试邮件展示如下：
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/213029_66ca45e5_482055.png "在这里输入图片标题")
+#License
+GPL V2.0
 <h2>如果您觉得这个产品对您有用，您可以捐助下我，让我有理由继续下去，非常感谢。</h2>
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0829/144253_111773ec_482055.jpeg "在这里输入图片标题")
 <h2>您也可以加入webdriver中文社区交流QQ群： 471137382，欢迎给我提建议和bug。 或者给我邮件：609958331@qq.com 现在微信捐助无法得知捐助人昵称，欢迎添加我的个人微信:zhengshuheng002</h2>
