@@ -15,6 +15,8 @@
 8、支持APP控件常用操作
 9、用例集执行完毕自动生成简介美观的html报告
 10、用例执行完毕自动发送详实的html邮件报告，可拓展为有失败用例才发送。
+<h1>Api文档</h1>
+<a href="http://www.webdriver.org/doc/patatiumappui/api/index.html" target="_blank">点击查看api文档</a>
 <h1>环境配置</h1>
 1、JDK1.8
 2、IDEA\Eclipse
