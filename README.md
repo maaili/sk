@@ -18,13 +18,13 @@
 <h1>环境配置</h1>
 1、JDK1.8
 2、IDEA\Eclipse
-3、Android SDK 具体安装参考：http://www.webdriver.org/article-52-1.html
-4、一台安卓手机或者安卓模拟器，推荐夜神安卓模拟器，下载地址：http://www.yeshen.com/
-5、Appium Server端，下载地址：http://pan.baidu.com/s/1jIxzSfO
+3、Android SDK 具体安装参考：<a href="http://www.webdriver.org/article-52-1.html" target="_blank">http://www.webdriver.org/article-52-1.html</a>
+4、一台安卓手机或者安卓模拟器，推荐夜神安卓模拟器，下载地址：<a href="http://www.yeshen.com/" target="_blank">http://www.yeshen.com/</a>
+5、Appium Server端，下载地址：<a href="http://pan.baidu.com/s/1jIxzSfO" target="_blank">http://pan.baidu.com/s/1jIxzSfO</a>
 <h1>Demo演示</h1>
-Demo演示视频地址：http://v.youku.com/v_show/id_XMTcxMTY1MzE0NA==.html?beta&
+Demo演示视频地址：<a href="http://v.youku.com/v_show/id_XMTcxMTY1MzE0NA==.html?beta&" target="_blank">http://v.youku.com/v_show/id_XMTcxMTY1MzE0NA==.html?beta&</a>
 <h3>一、创建对象库</h3>
-1、通过Android SDK工具 uiautomatorviewer.bat 获取app元素定位信息，具体使用参考：http://www.webdriver.org/article-53-1.html
+1、通过Android SDK工具 uiautomatorviewer.bat 获取app元素定位信息，具体使用参考：<a href="http://www.webdriver.org/article-53-1.html" target="_blank">http://www.webdriver.org/article-53-1.html</a>
 2、UILibrary.xml 对象库文件编写
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -193,7 +193,7 @@ Jenkins：1、checkout 项目代码 2、指定pom.xml文件 3、执行mvn clean 
 <h3>七、查看测试报告及日志文件</h3>
 用例执行完毕，会自动发送邮件报告及生成测试报告文件；用例失败会自动截图并将其展示在报告中，也可以将用例失败堆栈信息显示到报表中
 测试报告文件生成在项目根目录下test-out目录下report.html文件
-报告展示如下：http://www.webdriver.org/doc/patatiumappui/report/report.html
+报告展示如下：<a href="http://www.webdriver.org/doc/patatiumappui/report/report.html" target="_blank">点击查看在线报告</a>
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/212710_e5185410_482055.png "在这里输入图片标题")
 测试日志展示如下：
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/212830_2ff8aa61_482055.png "在这里输入图片标题")
