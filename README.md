@@ -24,6 +24,8 @@
 4、Maven
 5、一台安卓手机或者安卓模拟器，推荐夜神安卓模拟器，下载地址：<a href="http://www.yeshen.com/" target="_blank">http://www.yeshen.com/</a>
 6、Appium Server端，下载地址：<a href="http://pan.baidu.com/s/1jIxzSfO" target="_blank">http://pan.baidu.com/s/1jIxzSfO</a>
+<h1>注意事项</h1>
+工程项目编码需要设置成UTF-8否则会出现中文乱码情况
 <h1>Demo演示</h1>
 Demo演示视频地址：<a href="http://v.youku.com/v_show/id_XMTcxMTY1MzE0NA==.html?beta&" target="_blank">http://v.youku.com/v_show/id_XMTcxMTY1MzE0NA==.html?beta&</a>
 <h3>一、创建对象库</h3>
