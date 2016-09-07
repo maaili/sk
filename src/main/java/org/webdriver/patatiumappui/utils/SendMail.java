@@ -9,9 +9,6 @@ import java.util.Properties;
 public class SendMail {
 	private Log log=new Log(SendMail.class);
 	public static void main(String[] args) {
-		// TODO 自动生成的方法存根
-		SendMail sendMail=new SendMail();
-		sendMail.sendmessage("webdriver@webdriver.org", "zheng@159791", "smtp.webdriver.org", "25", "webdriver@webdriver.org", "609958331@qq.com", "abbb", "aagg");
 
 	}
 	/**
@@ -130,5 +127,3 @@ class Auth extends Authenticator
 
 
 }
- 
- 
