@@ -1,0 +1,11 @@
+pages:
+  -page:
+    -pageName: org.webdriver.patatiumappui.pageObject.StartPage
+    -value:
+    -desc: 微信APP启动首页
+    -locators:
+      - {type: "id",timeout:"4",value: "com.tencent.mm:id/c4k",desc: "登录",name: "登录"}
+      - {type: "id",timeout:"4",value: "com.tencent.mm:id/cuh",desc: "注册",name: "注册"}
+
+
+
