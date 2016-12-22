@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Iterator;
 
 //通过解析xml文件自动生成对象库代码
-public class PageObjectAutoCode {
+public class PageObjectAutoCodeForXml {
 	Log log=new Log(this.getClass());
 	static  String path="src/main/java/org/webdriver/patatiumappui/pageObjectConfig/UILibrary.xml";
 	public static void autoCode() throws Exception
@@ -46,7 +46,7 @@ public class PageObjectAutoCode {
 			sb.append("import java.io.InputStream;\n");
 			sb.append("import org.webdriver.patatiumappui.utils.BaseAction;\n");
 			sb.append("import org.webdriver.patatiumappui.utils.Locator;\n");
-			sb.append("import org.webdriver.patatiumappui.pageObjectConfig.PageObjectAutoCode;");
+			sb.append("import org.webdriver.patatiumappui.pageObjectConfig.PageObjectAutoCodeForXml;");
 			sb.append("//"+page.attribute(2).getValue()+"_对象库类\n");
 			sb.append("public class "+ pageClassName+" extends BaseAction {\n");
 			sb.append("//用于eclipse工程内运行查找对象库文件路径\n");
@@ -101,7 +101,7 @@ public class PageObjectAutoCode {
 				e1.printStackTrace();
 			}
 			System.out.println(sb);
-			Log log=new Log(PageObjectAutoCode.class);
+			Log log=new Log(PageObjectAutoCodeForXml.class);
 			log.info("自动生成对象库java代码成功");
 		}
 
@@ -109,7 +109,7 @@ public class PageObjectAutoCode {
 	}
 	public static void main(String[] args) throws Exception {
 		// TODO 自动生成的方法存根
-		PageObjectAutoCode.autoCode();
+		PageObjectAutoCodeForXml.autoCode();
 	}
 
 }
