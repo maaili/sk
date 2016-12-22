@@ -1,4 +1,34 @@
 #PatatiumAppUi
+<h1>更新<h1>
+  <h3>20161222增加对YAML管理对象库的支持</h3>
+   对象库编写支持YAML支持，格式如下：
+```
+pages:
+    - page:
+       pageName: org.webdriver.patatiumappui.pageObject.StartPage
+       value: "www.baidu.com"
+       desc: "微信APP启动首页"
+       locators:
+          - {type: "id",timeout: "3",value: "com.tencent.mm:id/c72",desc: "登录",name: "登录"}
+          - {type: "id",timeout: "3",value: "com.tencent.mm:id/c71",desc: "注册",name: "注册"}
+    - page:
+        pageName: org.webdriver.patatiumappui.pageObject.LoginPage
+        value: ""
+        desc: "微信App登录页面"
+        locators:
+          - {type: "id",timeout: "3" , value: "com.tencent.mm:id/b9i", desc: "使用其他方式登录",name: "使用其他方式登录"}
+          - {type: "xpath",timeout: "3" ,value: "//android.widget.EditText[@text='QQ号/微信号/Email']", desc: "账号",name: "账号输入框"}
+          - {type: "xpath",timeout: "3" ,value: "//android.widget.EditText[@NAF='1']", desc: "密码",name: "密码输入框"}
+          - {type: "id",timeout: "3" ,value: "com.tencent.mm:id/b8z", desc: "登录",name: "登录按钮"}
+          - {type: "id",timeout: "3" ,value: "com.tencent.mm:id/bl3", desc: "失败提示信息确认信息",name: "登录失败提示信息"}
+          - {type: "id",timeout: "3" ,value: "com.tencent.mm:id/a_r", desc: "失败提示信息确认按钮",name: "登录失败确认按钮"}
+
+
+
+
+
+```
+编写完后运行PageObjectAutoCodeForYaml.java 类
 <h1>简介</h1>
 这是一个AppUi自动化测试框架，由webdriver中文社区创办人土豆(本人技术笔名)所创建,该APP自动化测试框架是用java语言编写的，基于selenium webdriver Appium的开源自动化测试框架，该框架结合了testng,selenium,webdriver，Appium,jxl，jodd-http 等工具。该框架基于页面对象模型（POM）架构，实现了关键字驱动技术，数据驱动,无需掌握多少编程知识即可编写脚本，同时实现了数据与代码分离的功能：1、元素定位信息保存在对象库文件中 2、测试用例数据可以存储在excel中。从而实现，页面元素位置变化，无需改动脚本，只需修改对应的元素定位信息即可。
 该框架实现了检查点及用例失败自动截图功能，自动生成html测试报告及自动发送html邮件测试报告功能。
