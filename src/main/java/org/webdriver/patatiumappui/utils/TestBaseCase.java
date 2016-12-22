@@ -1,4 +1,5 @@
 package org.webdriver.patatiumappui.utils;
+import org.testng.annotations.*;
 import org.webdriver.patatiumappui.utils.Log;
 
 import org.openqa.selenium.Platform;
@@ -21,17 +22,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.AfterTest;
 public class TestBaseCase {
 	public static AndroidDriver driver;
 	//方法描述
 	public static String description;
 	public Log log=new Log(this.getClass().getSuperclass());
-	@BeforeTest
+	@BeforeSuite
 	@Parameters({"driverName","nodeURL","appName","deviceName","sdkVersion","appMainPackage","appActivity","platformName"})
 	public void  setup( String driverName,String nodeURL,String appName,String deviceName,String sdkVersion,String appMainPackage,String appActivity,String platformName) throws MalformedURLException {
 		log.info("------------------开始执行测试---------------");
@@ -68,15 +64,14 @@ public class TestBaseCase {
 
 	}
 
-	@AfterTest
+	@AfterSuite
 	public void tearDown() throws IOException {
 		this.driver.quit();
 		ElementAction action=new ElementAction();
 		log.info("关闭appium server");
-		action.executeCmd("taskkill /im cmd.exe");
+		action.executeCmd("taskkill /f/im cmd.exe");
 		log.info("-------------结束测试，并关闭退出driver及appium server-------------");
 	}
-
 	/**
 	 *
 	 * @param driverName driverName

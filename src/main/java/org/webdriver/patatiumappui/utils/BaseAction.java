@@ -15,10 +15,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class BaseAction extends TestBaseCase{
 
-	//protected 只在本包之内有权限，可访问
-	//protected  WebDriver driver;
-	// protected Log log;
-	//定位信息图（对象库存储结构）
 	protected HashMap<String,Locator>  locatorMap;
 	public String path=null;
 	public InputStream path_inputStream_1;
@@ -39,8 +35,6 @@ public class BaseAction extends TestBaseCase{
 	}
 	/**
 	 * 构造方法，创建创建BasePageOpera对象时，需要初始化的信息.传递相关参数
-	 * @param driver
-	 * @param path 对象库文件位置
 	 * this.getClass().getCanonicalName() 获取page类路径，也就是xml文档中的pageName
 	 * @throws Exception
 	 */
@@ -52,15 +46,21 @@ public class BaseAction extends TestBaseCase{
 	public void getLocatorMap()
 	{
 		XmlReadUtil xmlReadUtil=new XmlReadUtil();
+		YamlReadUtil yamlReadUtil=new YamlReadUtil();
 		try {
 			if((path==null||path.isEmpty()))
 			{locatorMap = xmlReadUtil.readXMLDocument(path_inputStream_1, this.getClass().getCanonicalName());}
 			else {
-				locatorMap = xmlReadUtil.readXMLDocument(path, this.getClass().getCanonicalName());
+				if (path.contains(".xml"))
+				{
+					locatorMap = xmlReadUtil.readXMLDocument(path, this.getClass().getCanonicalName());
+				}else if (path.contains(".yaml")) {
+					locatorMap=yamlReadUtil.getLocatorMap(path,this.getClass().getCanonicalName());
+				}
+
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
@@ -211,7 +211,7 @@ public class BaseAction extends TestBaseCase{
 		 */
 		//locator=getLocator(locatorMap.get(key));
 		WebElement webElement;
-		switch (locator.getBy())
+		switch (locator.getType())
 		{
 			case xpath :
 				//log.info("find element By xpath");
