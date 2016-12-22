@@ -72,6 +72,12 @@
             <artifactId>java-client</artifactId>
             <version>4.0.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.github.sanjusoftware/yamlbeans -->
+        <dependency>
+            <groupId>com.github.sanjusoftware</groupId>
+            <artifactId>yamlbeans</artifactId>
+            <version>1.11</version>
+        </dependency>
 
     </dependencies>
     <build>
