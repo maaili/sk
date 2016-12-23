@@ -231,11 +231,11 @@ public class ElementAction extends TestBaseCase{
 		try {
 			WebElement webElement=findElement(locator);
 			webElement.sendKeys(value);
-			//log.info("input输入："+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"  value:"+value+"]");
-			log.info("input输入："+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"  value:"+"*******"+"]");
+			//log.info("input输入："+locator.getLocalorName()+"["+"By."+locator.getType()+":"+locator.getElement()+"  value:"+value+"]");
+			log.info("input输入："+locator.getLocalorName()+"["+"By."+locator.getType()+":"+locator.getElement()+"  value:"+"*******"+"]");
 		} catch (NoSuchElementException e) {
 			// TODO: handle exception
-			log.error("找不到元素，input输入失败:"+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
+			log.error("找不到元素，input输入失败:"+locator.getLocalorName()+"["+"By."+locator.getType()+":"+locator.getElement()+"]");
 			e.printStackTrace();
 			//throw e;
 			//Assertion.flag=false;
@@ -257,10 +257,10 @@ public class ElementAction extends TestBaseCase{
 		try {
 			WebElement webElement=findElement(locator);
 			webElement.click();
-			log.info("click元素："+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"]成功！");
+			log.info("click元素："+locator.getLocalorName()+"["+"By."+locator.getType()+":"+locator.getElement()+"]成功！");
 		} catch (NoSuchElementException e) {
 			// TODO: handle exception
-			log.error("找不到元素，click失败:"+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
+			log.error("找不到元素，click失败:"+locator.getLocalorName()+"["+"By."+locator.getType()+":"+locator.getElement()+"]");
 			e.printStackTrace();
 			throw e;
 		}
@@ -276,7 +276,7 @@ public class ElementAction extends TestBaseCase{
 		try {
 			WebElement webElement=findElement(locator);
 			Select select=new Select(webElement);
-			log.info("选择select标签："+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
+			log.info("选择select标签："+locator.getLocalorName()+"["+"By."+locator.getType()+":"+locator.getElement()+"]");
 			try {
 				//select.selectByValue(value);
 				select.selectByVisibleText(text);
@@ -289,7 +289,7 @@ public class ElementAction extends TestBaseCase{
 			}
 		} catch (NoSuchElementException e) {
 			// TODO: handle exception
-			log.error("找不到元素，选择select标签失败:"+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
+			log.error("找不到元素，选择select标签失败:"+locator.getLocalorName()+"["+"By."+locator.getType()+":"+locator.getElement()+"]");
 			throw e;
 		}
 	}
@@ -304,10 +304,10 @@ public class ElementAction extends TestBaseCase{
 		try {
 			WebElement webElement=findElement(locator);
 			select=new Select(webElement);
-			log.info("选择select标签:"+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
+			log.info("选择select标签:"+locator.getLocalorName()+"["+"By."+locator.getType()+":"+locator.getElement()+"]");
 		} catch (NoSuchElementException e) {
 			// TODO: handle exception
-			log.error("找不到元素，选择select标签失败:"+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
+			log.error("找不到元素，选择select标签失败:"+locator.getLocalorName()+"["+"By."+locator.getType()+":"+locator.getElement()+"]");
 			throw e;
 		}
 		try {
@@ -331,10 +331,10 @@ public class ElementAction extends TestBaseCase{
 		try {
 			WebElement webElement=findElement(locator);
 			select=new Select(webElement);
-			log.info("选择select标签:"+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
+			log.info("选择select标签:"+locator.getLocalorName()+"["+"By."+locator.getType()+":"+locator.getElement()+"]");
 		} catch (NoSuchElementException e) {
 			// TODO: handle exception
-			log.error("找不到元素，选择select标签失败"+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
+			log.error("找不到元素，选择select标签失败"+locator.getLocalorName()+"["+"By."+locator.getType()+":"+locator.getElement()+"]");
 			throw e;
 		}
 		try {
@@ -438,10 +438,10 @@ public class ElementAction extends TestBaseCase{
 		try {
 			WebElement webElement=findElement(locator);
 			webElement.clear();
-			log.info("清除input值:"+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
+			log.info("清除input值:"+locator.getLocalorName()+"["+"By."+locator.getType()+":"+locator.getElement()+"]");
 		} catch (NoSuchElementException e) {
 			// TODO: handle exception
-			log.error("清除input值失败:"+locator.getLocalorName()+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
+			log.error("清除input值失败:"+locator.getLocalorName()+"["+"By."+locator.getType()+":"+locator.getElement()+"]");
 
 		}
 
@@ -652,7 +652,7 @@ public class ElementAction extends TestBaseCase{
 			// TODO: handle exception
 			log.info("无法定位页面元素");
 			e.printStackTrace();
-			Assertion.assertInfolList.add("failed,找不到元素：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
+			Assertion.assertInfolList.add("failed,找不到元素：["+locator.getType()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
 			noSuchElementExceptions.add(e);
 			Assertion.messageList.add("找不到所需页面元素["+locator.getElement()+"]:failed");
 			ScreenShot screenShot=new ScreenShot(driver);
@@ -669,7 +669,7 @@ public class ElementAction extends TestBaseCase{
 			// TODO: handle exception
 			log.info("查找页面元素超时");
 			e.printStackTrace();
-			Assertion.assertInfolList.add("failed,超时找不到元素：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
+			Assertion.assertInfolList.add("failed,超时找不到元素：["+locator.getType()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
 			noSuchElementExceptions.add(e);
 			Assertion.messageList.add("超时找不到所需页面元素["+locator.getElement()+"]:failed");
 			ScreenShot screenShot=new ScreenShot(driver);
@@ -687,7 +687,7 @@ public class ElementAction extends TestBaseCase{
 			// TODO: handle exception
 			log.info("查找页面元素超时");
 			e.printStackTrace();
-			Assertion.assertInfolList.add("failed,页面元素不可视：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
+			Assertion.assertInfolList.add("failed,页面元素不可视：["+locator.getType()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
 			noSuchElementExceptions.add(e);
 			Assertion.messageList.add("超时页面元素不可视["+locator.getElement()+"]:failed");
 			ScreenShot screenShot=new ScreenShot(driver);
@@ -727,7 +727,7 @@ public class ElementAction extends TestBaseCase{
 			// TODO: handle exception
 			log.info("无法定位页面元素");
 			e.printStackTrace();
-			Assertion.assertInfolList.add("failed,找不到元素：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
+			Assertion.assertInfolList.add("failed,找不到元素：["+locator.getType()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
 			noSuchElementExceptions.add(e);
 			Assertion.messageList.add("找不到所需页面元素["+locator.getElement()+"]:failed");
 			ScreenShot screenShot=new ScreenShot(driver);
@@ -744,7 +744,7 @@ public class ElementAction extends TestBaseCase{
 			// TODO: handle exception
 			log.info("超时无法定位页面元素");
 			e.printStackTrace();
-			Assertion.assertInfolList.add("failed,超时找不到元素：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
+			Assertion.assertInfolList.add("failed,超时找不到元素：["+locator.getType()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
 			noSuchElementExceptions.add(e);
 			Assertion.messageList.add("超时找不到所需页面元素["+locator.getElement()+"]:failed");
 			ScreenShot screenShot=new ScreenShot(driver);
@@ -761,7 +761,7 @@ public class ElementAction extends TestBaseCase{
 			// TODO: handle exception
 			log.info("超时无法定位页面元素");
 			e.printStackTrace();
-			Assertion.assertInfolList.add("failed,超时找不到元素：["+locator.getBy()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
+			Assertion.assertInfolList.add("failed,超时找不到元素：["+locator.getType()+":"+locator.getElement()+"等待:"+locator.getWaitSec());
 			noSuchElementExceptions.add(e);
 			Assertion.messageList.add("超时页面元素不可视["+locator.getElement()+"]:failed");
 			ScreenShot screenShot=new ScreenShot(driver);
@@ -788,9 +788,9 @@ public class ElementAction extends TestBaseCase{
 		/**
 		 * locator.getElement(),获取对象库对象定位信息
 		 */
-		log.info("查找元素："+locator.getLocalorName()+"方式"+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
+		log.info("查找元素："+locator.getLocalorName()+"方式"+"["+"By."+locator.getType()+":"+locator.getElement()+"]");
 		WebElement webElement;
-		switch (locator.getBy())
+		switch (locator.getType())
 		{
 			case xpath :
 				webElement=driver.findElement(By.xpath(locator.getElement()));
@@ -835,9 +835,9 @@ public class ElementAction extends TestBaseCase{
 		 * locator.getElement(),获取对象库对象定位信息
 		 */
 		//locator=getLocator(locatorMap.get(key));
-		log.info("查找一组元素："+locator.getLocalorName()+" 方式"+"["+"By."+locator.getBy()+":"+locator.getElement()+"]");
+		log.info("查找一组元素："+locator.getLocalorName()+" 方式"+"["+"By."+locator.getType()+":"+locator.getElement()+"]");
 		List<WebElement> webElements;
-		switch (locator.getBy())
+		switch (locator.getType())
 		{
 			case xpath :
 				webElements=driver.findElements(By.xpath(locator.getElement()));
