@@ -27,9 +27,9 @@ public class TestBaseCase {
 	//方法描述
 	public static String description;
 	public Log log=new Log(this.getClass().getSuperclass());
-	@BeforeSuite
-	@Parameters({"driverName","nodeURL","appName","deviceName","sdkVersion","appMainPackage","appActivity","platformName"})
-	public void  setup( String driverName,String nodeURL,String appName,String deviceName,String sdkVersion,String appMainPackage,String appActivity,String platformName) throws MalformedURLException {
+	@BeforeTest
+	@Parameters({"driverName","nodeURL","appName","deviceId","deviceName","sdkVersion","appMainPackage","appActivity","platformName"})
+	public void  setup( String driverName,String nodeURL,String appName,String deviceId,String deviceName,String sdkVersion,String appMainPackage,String appActivity,String platformName) throws MalformedURLException {
 		log.info("------------------开始执行测试---------------");
 		//启动appium server
 		ElementAction action=new ElementAction();
@@ -37,7 +37,7 @@ public class TestBaseCase {
 		try {
 			String cmd="appium -a " +
 					nodeURL.split(":")[0]+
-					"  -p "+nodeURL.split(":")[1];
+					"  -p "+nodeURL.split(":")[1]+" -U "+deviceId;
 			System.out.println(cmd);
 			action.executeCmd(cmd);
 			action.sleep(10);
@@ -49,12 +49,14 @@ public class TestBaseCase {
 			log.error("appium url 没有设置");
 		}
 		else {
-			log.info("读取xml配置：Mobile Driver:"+driverName+"；Appium Server:"+"http://"+nodeURL+"/wd/hub");
+			log.info("读取xml配置：Mobile Driver:"+driverName+"；Appium Server:"+"http://"+nodeURL+"/wd/hub"+"设备Id："+deviceId+"设备名字："+deviceName);
 			try {
 				//Process process=Runtime.getRuntime().exec("cmd.exe /c appium");
 				//System.out.println(process.toString());
 				//this.driver=setRemoteDriver(driverName, nodeURL, appName, deviceName, sdkVersion, appMainPackage, appActivity,platformName);
-				 driver=setRemoteDriver(driverName, nodeURL, appName, deviceName, sdkVersion, appMainPackage, appActivity,platformName);
+				 driver=setRemoteDriver(driverName, nodeURL, appName, deviceId,deviceName, sdkVersion, appMainPackage, appActivity,platformName);
+				 log.info(driver.getCapabilities().toString());
+				System.out.println(driver.manage().logs().toString());
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -64,7 +66,7 @@ public class TestBaseCase {
 
 	}
 
-	@AfterSuite
+	@AfterTest
 	public void tearDown() throws IOException {
 		this.driver.quit();
 		ElementAction action=new ElementAction();
@@ -85,7 +87,7 @@ public class TestBaseCase {
 	 * @return
 	 * @throws MalformedURLException
 	 */
-	private AndroidDriver setRemoteDriver(String driverName,String nodeURL,String appName,String deviceName,String sdkVersion,String appMainPackage,String appActivity,String platformName) throws MalformedURLException
+	private AndroidDriver setRemoteDriver(String driverName,String nodeURL,String appName,String devieceId,String deviceName,String sdkVersion,String appMainPackage,String appActivity,String platformName) throws MalformedURLException
 	{
 		//获取app路径
 		System.out.println(System.getProperty("user.dir"));
@@ -98,6 +100,7 @@ public class TestBaseCase {
 				//设置自动化相关参数
 				DesiredCapabilities desiredCapabilities=new DesiredCapabilities();
 				desiredCapabilities.setCapability("platformName",platformName);
+				desiredCapabilities.setCapability("uuid",devieceId );
 				desiredCapabilities.setCapability("deviceName",deviceName );
 				desiredCapabilities.setCapability("platformVersion", sdkVersion);
 				//设置app路径
@@ -120,6 +123,7 @@ public class TestBaseCase {
 				//设置自动化相关参数
 				DesiredCapabilities desiredCapabilities2=new DesiredCapabilities();
 				desiredCapabilities2.setCapability("platformName", "Android");
+				desiredCapabilities2.setCapability("uuid",devieceId );
 				desiredCapabilities2.setCapability("deviceName",deviceName );
 				desiredCapabilities2.setCapability("platformVersion", sdkVersion);
 				//设置app路径
