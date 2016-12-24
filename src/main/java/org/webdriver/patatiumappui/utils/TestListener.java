@@ -55,7 +55,8 @@ public class TestListener  extends TestListenerAdapter{
 				sb.append("<err_assert_info"+"   method=\""+tr.getTestClass().getName()+"."+tr.getMethod().getMethodName()+"."+tr.getEndMillis()+"\">\n");
 			}
 			else {
-				sb.append("<err_assert_info"+"   method=\""+tr.getTestClass().getName()+"."+tr.getMethod().getMethodName()+"\">\n");
+				sb.append("<err_assert_info"+"   method=\""+tr.getTestClass().getName()+"."+tr.getMethod().getMethodName()+"."+tr.getEndMillis()+"\">\n");
+//				sb.append("<err_assert_info"+"   method=\""+tr.getTestClass().getName()+"."+tr.getMethod().getMethodName()+"\">\n");
 			}
 			if(Assertion.messageList.get(i).contains("pass"))
 			{
@@ -80,7 +81,8 @@ public class TestListener  extends TestListenerAdapter{
 				sb.append("<err_assert_info_StackTrace"+"   method=\""+tr.getTestClass().getName()+"."+tr.getMethod().getMethodName()+"."+tr.getEndMillis()+"\">\n");
 			}
 			else {
-				sb.append("<err_assert_info_StackTrace"+"   method=\""+tr.getTestClass().getName()+"."+tr.getMethod().getMethodName()+"\">\n");
+				sb.append("<err_assert_info_StackTrace"+"   method=\""+tr.getTestClass().getName()+"."+tr.getMethod().getMethodName()+"."+tr.getEndMillis()+"\">\n");
+//				sb.append("<err_assert_info_StackTrace"+"   method=\""+tr.getTestClass().getName()+"."+tr.getMethod().getMethodName()+"\">\n");
 			}
 			sb.append("<span class=\"err_span\" >"+e.getMessage()+"</span></br>\n");
 			for(int i=0;i<et.length;i++)
