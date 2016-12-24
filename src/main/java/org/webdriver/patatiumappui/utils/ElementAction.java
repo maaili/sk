@@ -1,7 +1,7 @@
 package org.webdriver.patatiumappui.utils;
 
 import com.google.common.io.Files;
-import io.appium.java_client.NetworkConnectionSetting;
+//import io.appium.java_client.NetworkConnectionSetting;
 import io.appium.java_client.TouchAction;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -28,21 +28,21 @@ public class ElementAction extends TestBaseCase{
 	private Log log=new Log(this.getClass());
 	public static ArrayList<Exception> noSuchElementExceptions=new ArrayList<Exception>();
 	TouchAction touchAction=new TouchAction(driver);
-	/**
-	 * 获取手机网络状态
-	 */
-	public  void get_network_connection()
-	{
-		int state=driver.getNetworkConnection().value;
-	}
-	/**
-	 * 设置网络状态
-	 *
-	 */
-	public  void tsetNetworkConnection(int status)
-	{
-       driver.setNetworkConnection(new NetworkConnectionSetting(status));
-	}
+//	/**
+//	 * 获取手机网络状态
+//	 */
+//	public  void get_network_connection()
+//	{
+//		int state=driver.getNetworkConnection().value;
+//	}
+//	/**
+//	 * 设置网络状态
+//	 *
+//	 */
+//	public  void tsetNetworkConnection(int status)
+//	{
+//       driver.setNetworkConnection(new NetworkConnectionSetting(status));
+//	}
 	/**
 	 * 安装app
 	 */
