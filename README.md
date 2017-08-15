@@ -207,7 +207,8 @@ App安装包apk文件放在项目根目录下apps目录里，tesng.xml需指定�
 IDE：在IDE集成开发环境下右键testng.xml使用testng运行
 Maven:执行mvn clean ;mvn test 命令
 Jenkins：1、checkout 项目代码 2、指定pom.xml文件 3、执行mvn clean ;mvn test 命令
-<h3>七、查看测试报告及日志文件</h3>
+### 七、查看测试报告及日志文件
+
 用例执行完毕，会自动发送邮件报告及生成测试报告文件；用例失败会自动截图并将其展示在报告中，也可以将用例失败堆栈信息显示到报表中
 测试报告文件生成在项目根目录下test-out目录下report.html文件
 报告展示如下：<a href="http://www.webdriver.org/doc/patatiumappui/report/report.html" target="_blank">点击查看在线报告</a>
@@ -218,7 +219,8 @@ Jenkins：1、checkout 项目代码 2、指定pom.xml文件 3、执行mvn clean 
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/213029_66ca45e5_482055.png "在这里输入图片标题")
 #License
 GPL V2.0
-<h1>更新</h1>
+### 更新
+
 20161222增加对YAML管理对象库的支持
    对象库编写支持YAML支持，格式如下：
 ```
