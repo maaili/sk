@@ -20,7 +20,8 @@
 ### Api文档
 
 <a href="http://www.webdriver.org/doc/patatiumappui/api/index.html" target="_blank">点击查看api文档</a>
-<h1>环境配置</h1>
+### 环境配置
+
 1、JDK1.8
 2、IDEA\Eclipse
 3、Android SDK 具体安装参考：<a href="http://www.webdriver.org/article-52-1.html" target="_blank">http://www.webdriver.org/article-52-1.html</a>
