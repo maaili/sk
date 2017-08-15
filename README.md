@@ -202,7 +202,8 @@ App安装包apk文件放在项目根目录下apps目录里，tesng.xml需指定�
     </test>
 </suite> <!-- Suite -->
 ```
-<h3>六、执行用例</h3>
+### 六、执行用例
+
 IDE：在IDE集成开发环境下右键testng.xml使用testng运行
 Maven:执行mvn clean ;mvn test 命令
 Jenkins：1、checkout 项目代码 2、指定pom.xml文件 3、执行mvn clean ;mvn test 命令
