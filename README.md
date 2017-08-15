@@ -69,7 +69,8 @@ Demo演示视频地址：<a href="http://v.youku.com/v_show/id_XMTcxMTY1MzE0NA==
 </map>
 ```
 编写完后，运行/src/main/java/org/webdriver/patatiumappui/PageObjectConfig/PageObjectAutoCode.java 文件生成对象库java代码
-<h3>二、公共action封装实例（业务操作）</h3>
+### 二、公共action封装实例（业务操作）
+
 ```
 /**
  * Created by zhengshuheng on 2016/9/2 0002.
@@ -90,7 +91,8 @@ public class LoginAction extends TestBaseCase {
 }
 
 ```
-<h3>三、驱动数据来源实例</h3>
+### 三、驱动数据来源实例
+
 在src/main/resources/data下创建loginData.xls文件
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/210055_8e091e1d_482055.png "在这里输入图片标题")
 <h3>四、测试用例编写</h3>
