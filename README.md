@@ -95,7 +95,8 @@ public class LoginAction extends TestBaseCase {
 
 在src/main/resources/data下创建loginData.xls文件
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/0903/210055_8e091e1d_482055.png "在这里输入图片标题")
-<h3>四、测试用例编写</h3>
+### 四、测试用例编写
+
 ```
 /**
  * Created by zhengshuheng on 2016/9/2 0002.
